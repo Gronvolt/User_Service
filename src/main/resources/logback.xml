@@ -1,0 +1,19 @@
+<configuration>
+    <!-- На консоль только INFO и выше -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Корневой уровень: INFO (DEBUG-логи Hibernate не пройдут) -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!-- Hibernate целиком на WARN — уйдут и SQL, и пул соединений -->
+    <logger name="org.hibernate" level="WARN"/>
+
+    <!-- Если хочешь видеть только SQL (но не каждый отладочный шум), раскомментируй строку ниже и закомментируй предыдущую -->
+    <!-- <logger name="org.hibernate.SQL" level="DEBUG"/> -->
+</configuration>
